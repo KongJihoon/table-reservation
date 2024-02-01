@@ -3,9 +3,8 @@ package com.zerobase.tablereservation.manager.service;
 
 import com.zerobase.tablereservation.auth.type.UserType;
 import com.zerobase.tablereservation.global.exception.CustomException;
-import com.zerobase.tablereservation.global.type.ErrorCode;
 import com.zerobase.tablereservation.manager.dto.ManagerDto;
-import com.zerobase.tablereservation.manager.dto.RegisterManager;
+import com.zerobase.tablereservation.manager.dto.SignUpManager;
 import com.zerobase.tablereservation.manager.entity.Manager;
 import com.zerobase.tablereservation.manager.entity.ManagerRepository;
 import lombok.AllArgsConstructor;
@@ -24,16 +23,16 @@ public class ManagerServiceImpl implements ManagerService{
 
     @Override
     @Transactional
-    public ManagerDto register(RegisterManager manager) {
-        boolean exist = managerRepository.existsByEmail(manager.getEmail());
+    public ManagerDto register(SignUpManager manager) {
+        boolean exist = this.managerRepository.existsByEmail(manager.getEmail());
 
         if(exist){
             throw new CustomException(ALREADY_EXIST_USER);
         }
 
-        manager.setPassword(encoder.encode(manager.getPassword()));
+        manager.setPassword(this.encoder.encode(manager.getPassword()));
 
-        Manager setManager = managerRepository.save(Manager.builder()
+        Manager setManager = this.managerRepository.save(Manager.builder()
                 .name(manager.getName())
                 .email(manager.getEmail())
                 .password(manager.getPassword())

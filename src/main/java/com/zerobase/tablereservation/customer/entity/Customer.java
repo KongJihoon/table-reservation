@@ -1,4 +1,4 @@
-package com.zerobase.tablereservation.manager.entity;
+package com.zerobase.tablereservation.customer.entity;
 
 import com.zerobase.tablereservation.auth.type.UserType;
 import com.zerobase.tablereservation.global.entity.BaseEntity;
@@ -13,13 +13,13 @@ import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class Manager extends BaseEntity implements UserDetails {
+@NoArgsConstructor
+@Entity
+public class Customer extends BaseEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,14 +42,17 @@ public class Manager extends BaseEntity implements UserDetails {
     private String phone;
 
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_MANAGER"));
+        return List.of(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
     }
+
 
     @Override
     public String getUsername() {
-        return null;}
+        return null;
+    }
 
     @Override
     public boolean isAccountNonExpired() {

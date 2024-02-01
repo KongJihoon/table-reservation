@@ -7,14 +7,14 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class RegisterManager {
+public class SignUpManager {
     private String name;
     private String email;
     private String password;
     private String phone;
 
-    public RegisterManager from(ManagerDto managerDto){
-        return RegisterManager.builder()
+    public SignUpManager from(ManagerDto managerDto) {
+        return SignUpManager.builder()
                 .name(managerDto.getName())
                 .email(managerDto.getEmail())
                 .password(managerDto.getPassword())

@@ -29,7 +29,7 @@ public class ManagerDto {
 
         return ManagerDto.builder()
                 .id(manager.getId())
-                .name(manager.getName())
+                .name(manager.getUsername())
                 .userType(manager.getUserType())
                 .email(manager.getEmail())
                 .password(manager.getPassword())
