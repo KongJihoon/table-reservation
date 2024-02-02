@@ -4,6 +4,8 @@ import com.zerobase.tablereservation.shop.dto.CreateShop;
 import com.zerobase.tablereservation.shop.dto.ShopDto;
 import com.zerobase.tablereservation.shop.dto.UpdateShop;
 
+import java.util.List;
+
 public interface ShopService {
 
     ShopDto createShop(CreateShop.Request request);
@@ -11,5 +13,7 @@ public interface ShopService {
     ShopDto updateShop(Long id, UpdateShop.Request request);
 
     void deleteShop(Long managerId, Long shopId);
+
+    List<ShopDto> searchShopList(Long id);
 
 }

@@ -15,6 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.zerobase.tablereservation.global.type.ErrorCode.*;
 
 @Slf4j
@@ -25,6 +28,11 @@ public class ShopServiceImpl implements ShopService{
     private final ShopRepository shopRepository;
     private final ManagerRepository managerRepository;
 
+    /**
+     * 매장 생성
+     * @param request
+     * @return
+     */
     @Override
     @Transactional
     public ShopDto createShop(CreateShop.Request request) {
@@ -46,6 +54,13 @@ public class ShopServiceImpl implements ShopService{
                 .build()));
     }
 
+
+    /**
+     * 매장 수정
+     * @param id
+     * @param request
+     * @return
+     */
     @Override
     @Transactional
     public ShopDto updateShop(Long id, UpdateShop.Request request) {
@@ -66,6 +81,11 @@ public class ShopServiceImpl implements ShopService{
         return ShopDto.fromEntity(this.shopRepository.save(shop));
     }
 
+    /**
+     * 매장 삭제
+     * @param managerId
+     * @param shopId
+     */
     @Override
     @Transactional
     public void deleteShop(Long managerId, Long shopId) {
@@ -79,6 +99,28 @@ public class ShopServiceImpl implements ShopService{
         }
 
         this.shopRepository.delete(shop);
+
+    }
+
+
+    /**
+     * 매장 검색
+     * @param id
+     * @return
+     */
+    @Override
+    public List<ShopDto> searchShopList(Long id) {
+        log.info("매장 리스트 확인");
+
+        List<Shop> shopList = shopRepository.findShopByManagerId(id);
+
+        if(shopList.isEmpty()){
+            throw new CustomException(SHOP_NOT_FOUND);
+        }
+
+        log.info("매장 리스트 확인 완료");
+        return shopList.stream()
+                .map(ShopDto::fromEntity).collect(Collectors.toList());
 
     }
 }
