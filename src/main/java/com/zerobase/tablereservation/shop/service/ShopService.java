@@ -14,6 +14,8 @@ public interface ShopService {
 
     void deleteShop(Long managerId, Long shopId);
 
+    ShopDto detailShop(String name);
+
     List<ShopDto> searchShopList(Long id);
 
 }

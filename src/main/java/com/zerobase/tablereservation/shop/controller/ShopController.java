@@ -42,6 +42,14 @@ public class ShopController {
         return ResponseEntity.ok("매장 삭제 완료");
     }
 
+    @GetMapping("/detail/{name}")
+    @PreAuthorize("hasRole('CUSTOMER')")
+    public ResponseEntity<?> detailShop(
+            @PathVariable String name
+    ){
+        return ResponseEntity.ok(shopService.detailShop(name));
+    }
+
     @GetMapping("/partner/list")
     @PreAuthorize("hasRole('PARTNER')")
     public ResponseEntity<?> getShopList(

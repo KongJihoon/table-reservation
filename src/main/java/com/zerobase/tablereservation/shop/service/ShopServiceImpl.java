@@ -44,7 +44,7 @@ public class ShopServiceImpl implements ShopService{
         if(this.shopRepository.existsByShopName(request.getShopName())){
             throw new CustomException(ALREADY_EXIST_SHOP);
         }
-        log.info("매장 생성 완료");
+         log.info("매장 생성 완료");
 
         return ShopDto.fromEntity(this.shopRepository.save(Shop.builder()
                 .manager(manager)
@@ -100,6 +100,17 @@ public class ShopServiceImpl implements ShopService{
 
         this.shopRepository.delete(shop);
 
+    }
+
+    @Override
+    public ShopDto detailShop(String name) {
+        log.info("매장 상세 정보");
+
+        Shop shop = shopRepository.findByShopName(name)
+                .orElseThrow(() -> new CustomException(SHOP_NOT_FOUND));
+
+
+        return ShopDto.fromEntity(shop);
     }
 
 

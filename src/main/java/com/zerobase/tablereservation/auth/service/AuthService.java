@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.zerobase.tablereservation.auth.type.UserType.CUSTOMER;
 import static com.zerobase.tablereservation.auth.type.UserType.PARTNER;
 import static com.zerobase.tablereservation.global.type.ErrorCode.*;
 
@@ -62,8 +63,12 @@ public class AuthService implements UserDetailsService {
             Manager manager = checkManagerEmail(email);
 
             return createUserDetail(manager.getEmail(),manager.getPassword(), PARTNER);
-        }
+        } else if (this.customerRepository.existsByEmail(email)) {
+            Customer customer = checkCustomerEmail(email);
 
+
+            return createUserDetail(customer.getEmail(), customer.getPassword(), CUSTOMER);
+        }
 
 
         throw new UsernameNotFoundException("User not found with email: " + email);
