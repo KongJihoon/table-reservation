@@ -49,7 +49,9 @@ public class Manager extends BaseEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;}
+        return null;
+    }
+
 
     @Override
     public boolean isAccountNonExpired() {

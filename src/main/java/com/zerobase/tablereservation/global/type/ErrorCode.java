@@ -20,6 +20,8 @@ public enum ErrorCode {
      * shop
      */
     ALREADY_EXIST_SHOP(HttpStatus.BAD_REQUEST.value(), "이미 존재하는 매장입니다."),
+    SHOP_NOT_FOUND(HttpStatus.BAD_REQUEST.value(), "매장을 찾을 수 없습니다."),
+    SHOP_NOT_MATCH_MANAGER(HttpStatus.BAD_REQUEST.value(), "매장과 매니저가 일치하지 않습니다."),
 
 
     /**

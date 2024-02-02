@@ -11,4 +11,7 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
     boolean existsByShopName(String name);
     Optional<Shop> findByShopName(String name);
 
+
+
+
 }
