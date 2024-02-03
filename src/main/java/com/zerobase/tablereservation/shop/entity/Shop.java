@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Shop extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "store_id")
+    @Column(name = "shop_id")
     private Long id;
 
 

@@ -25,6 +25,13 @@ public enum ErrorCode {
 
 
     /**
+     * reservation
+     */
+    ALREADY_RESERVE(HttpStatus.BAD_REQUEST.value(), "이미 예약되었습니다."),
+    RESERVATION_NOT_FOUND(HttpStatus.BAD_REQUEST.value(), "예약을 확인할 수 없습니다."),
+    RESERVATION_TIME_EXCEEDED(HttpStatus.BAD_REQUEST.value(), "예약 시간을 초과하였습니다."),
+    CHECK_IT_10_MINUTES_BEFORE_THE_RESERVATION_TIME(HttpStatus.BAD_REQUEST.value(),"예약시간 10분 전부터 확인 가능합니다."),
+    /**
      * security error
      */
     WRONG_TOKEN(HttpStatus.BAD_REQUEST.value(), "잘못된 토큰입니다."),
