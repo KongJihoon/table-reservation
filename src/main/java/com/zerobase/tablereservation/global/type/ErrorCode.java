@@ -31,6 +31,16 @@ public enum ErrorCode {
     RESERVATION_NOT_FOUND(HttpStatus.BAD_REQUEST.value(), "예약을 확인할 수 없습니다."),
     RESERVATION_TIME_EXCEEDED(HttpStatus.BAD_REQUEST.value(), "예약 시간을 초과하였습니다."),
     CHECK_IT_10_MINUTES_BEFORE_THE_RESERVATION_TIME(HttpStatus.BAD_REQUEST.value(),"예약시간 10분 전부터 확인 가능합니다."),
+
+    /**
+     * review
+     */
+    REVIEW_NOT_FOUND(HttpStatus.BAD_REQUEST.value(), "리뷰를 찾을 수 없습니다."),
+    CUSTOMER_AUTHORITY_NOT_MATCH(HttpStatus.BAD_REQUEST.value(), "예약한 고객이 아닙니다."),
+    ALREADY_EXIST_REVIEW(HttpStatus.BAD_REQUEST.value(), "이미 리뷰가 존재합니다."),
+    REVIEW_NOT_AVAILABLE(HttpStatus.BAD_REQUEST.value(), "리뷰를 작성할 수 없습니다."),
+    REVIEW_RATING_OVER(HttpStatus.BAD_REQUEST.value(), "리뷰 평점이 범위를 벗어났습니다."),
+    REVIEW_CONTENT_TOO_LONG(HttpStatus.BAD_REQUEST.value(), "200자 내로 리뷰를 작성해주세요."),
     /**
      * security error
      */
