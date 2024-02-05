@@ -6,8 +6,10 @@ import com.zerobase.tablereservation.global.exception.CustomException;
 import com.zerobase.tablereservation.reservation.dto.CreateReservation;
 import com.zerobase.tablereservation.reservation.dto.ReservationDto;
 import com.zerobase.tablereservation.reservation.dto.UpdateArrive;
+import com.zerobase.tablereservation.reservation.dto.UpdateReservation;
 import com.zerobase.tablereservation.reservation.entity.Reservation;
 import com.zerobase.tablereservation.reservation.entity.ReservationRepository;
+import com.zerobase.tablereservation.reservation.type.ReservationStatus;
 import com.zerobase.tablereservation.shop.entity.Shop;
 import com.zerobase.tablereservation.shop.entity.ShopRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +19,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 import static com.zerobase.tablereservation.global.type.ErrorCode.*;
 import static com.zerobase.tablereservation.reservation.type.ArrivalStatus.ARRIVED;
 import static com.zerobase.tablereservation.reservation.type.ArrivalStatus.READY;
-import static com.zerobase.tablereservation.reservation.type.ReservationStatus.APPROVAL;
-import static com.zerobase.tablereservation.reservation.type.ReservationStatus.USE_COMPLETED;
+import static com.zerobase.tablereservation.reservation.type.ReservationStatus.*;
 
 @Slf4j
 @Service
@@ -57,7 +59,7 @@ public class ReservationServiceImpl implements ReservationService{
         Reservation reservation = reservationRepository.save(Reservation.builder()
                 .customer(customer)
                 .shop(shop)
-                .reservationStatus(APPROVAL)
+                .reservationStatus(STANDBY)
                 .arrivalStatus(READY)
                 .reservationDate(request.getReservationDate())
                 .reservationTime(request.getReservationTime()).build());
@@ -68,7 +70,44 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Override
     @Transactional
-    public ReservationDto updateReservation(Long reservationId, UpdateArrive.Request request) {
+    public ReservationDto updateReservation(Long reservationId, UpdateReservation.Request request) {
+
+        log.info("예약 상태 변경");
+
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new CustomException(RESERVATION_NOT_FOUND));
+
+        ReservationStatus reservationStatus = reservation.getReservationStatus();
+
+        if(reservationStatus.equals(request.getReservationStatus())){
+            throw new CustomException(RESERVATION_STATUS_ERROR);
+        }
+
+        reservation.setReservationStatus(request.getReservationStatus());
+
+        return ReservationDto.fromEntity(
+                this.reservationRepository.save(reservation)
+        );
+    }
+
+    @Override
+    public List<Reservation> searchReservation(Long id) {
+
+        log.info("예약 요청 목록 조회");
+
+        List<Reservation> reservations =
+                reservationRepository.findAllByManagerReservation(id);
+
+        if(reservations.isEmpty()){
+            throw new CustomException(RESERVATION_NOT_FOUND);
+        }
+
+        return reservations;
+    }
+
+    @Override
+    @Transactional
+    public ReservationDto updateArrive(Long reservationId, UpdateArrive.Request request) {
         log.info("예약자 도착 여부 변경");
 
         Reservation reservation = reservationRepository.findById(reservationId)
@@ -83,9 +122,31 @@ public class ReservationServiceImpl implements ReservationService{
         return ReservationDto.fromEntity(reservationRepository.save(reservation));
     }
 
+    @Override
+    @Transactional
+    public ReservationDto cancelReservation(Long reservationId) {
+        log.info("예약 취소");
 
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new CustomException(RESERVATION_NOT_FOUND));
+
+        reservation.setReservationStatus(CANCELED);
+
+        return ReservationDto.fromEntity(
+                reservationRepository.save(reservation)
+        );
+    }
+
+
+    /**
+     * 유효성 검사
+     * @param reservation
+     * @param arriveTime
+     */
     private void validationReservation(Reservation reservation, LocalTime arriveTime){
-        if(arriveTime.isAfter(reservation.getReservationTime())){
+        if(!reservation.getReservationStatus().equals(APPROVAL)){
+            throw new CustomException(RESERVATION_STATUS_ERROR);
+        } else if(arriveTime.isAfter(reservation.getReservationTime())){
             throw new CustomException(RESERVATION_TIME_EXCEEDED);
         }else if(arriveTime.isBefore(reservation.getReservationTime().minusMinutes(10L))){
             throw new CustomException(CHECK_IT_10_MINUTES_BEFORE_THE_RESERVATION_TIME);

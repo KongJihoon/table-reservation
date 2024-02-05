@@ -16,6 +16,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.zerobase.tablereservation.global.type.ErrorCode.*;
 import static com.zerobase.tablereservation.reservation.type.ReservationStatus.USE_COMPLETED;
 
@@ -77,6 +80,8 @@ public class ReviewServiceImpl implements ReviewService{
         reviewRepository.delete(reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new CustomException(REVIEW_NOT_FOUND)));
     }
+
+
 
 
     private void validationReviewStatus(Customer customer, Reservation reservation){

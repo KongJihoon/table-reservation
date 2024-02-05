@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
@@ -17,5 +18,11 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             "WHERE r.reservationDate = :#{#reservationTime.toLocalDate()} " +
             "AND r.reservationTime = :#{#reservationTime.toLocalTime()}")
     boolean existReservationTime(@Param("reservationTime")LocalDateTime reservationTime);
+
+    @Query(" SELECT r FROM Reservation r " +
+            " WHERE r.shop.manager.id = :id " +
+            " ORDER BY r.reservationDate " )
+    List<Reservation> findAllByManagerReservation(@Param("id") Long id);
+
 
 }
