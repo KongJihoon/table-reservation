@@ -1,0 +1,80 @@
+### 회원가입 (매니저)
+POST http://localhost:8080/api/signup/manager
+Content-Type: application/json
+
+{
+  "email": "manager@gmail.com",
+  "password": "12345",
+  "phone": "010-1111-2222",
+  "name": "매니저"
+}
+
+### 로그인 (매니저)
+POST http://localhost:8080/api/signin/manager
+Content-Type: application/json
+
+{
+  "email": "manager@gmail.com",
+  "password": "12345"
+}
+
+### 회원 정보 조회 (매니저)
+GET http://localhost:8080/api/partner/detail?id=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1hbmFnZXIuY29tIiwianRpIjoiTENhazJFTCt4SWY5eHBCemxzcjBwNHp4di96Vnc4ZEFDVks2c3ZudTJHaz0iLCJyb2xlcyI6IlBBUlRORVIiLCJpYXQiOjE3MDc2NDU3NDcsImV4cCI6MTcwNzY0OTM0N30.rsXcgAWsj25zdpcGvjkOybaoBdOtE5hYU_u6oaG7IjM
+
+
+
+### 매장 등록 (매니저)
+POST http://localhost:8080/api/shop/partner/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1hbmFnZXIuY29tIiwianRpIjoiTENhazJFTCt4SWY5eHBCemxzcjBwNHp4di96Vnc4ZEFDVks2c3ZudTJHaz0iLCJyb2xlcyI6IlBBUlRORVIiLCJpYXQiOjE3MDc2NDU3NDcsImV4cCI6MTcwNzY0OTM0N30.rsXcgAWsj25zdpcGvjkOybaoBdOtE5hYU_u6oaG7IjM
+
+
+{
+  "location": "인천시 계양구",
+  "managerId": 1,
+  "shopName": "shop",
+  "phone": "032-1234-5670"
+}
+
+### 매장 수정 (매니저)
+PUT http://localhost:8080/api/shop/partner/update/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1hbmFnZXIuY29tIiwianRpIjoiTENhazJFTCt4SWY5eHBCemxzcjBwNHp4di96Vnc4ZEFDVks2c3ZudTJHaz0iLCJyb2xlcyI6IlBBUlRORVIiLCJpYXQiOjE3MDc2NDU3NDcsImV4cCI6MTcwNzY0OTM0N30.rsXcgAWsj25zdpcGvjkOybaoBdOtE5hYU_u6oaG7IjM
+
+{
+  "shopName": "shop1",
+  "location": "서울시"
+}
+
+### 매장 삭제 (매니저)
+DELETE http://localhost:8080/api/shop/partner/delete?id=1&shop=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1hbmFnZXIuY29tIiwianRpIjoiTENhazJFTCt4SWY5eHBCemxzcjBwNHp4di96Vnc4ZEFDVks2c3ZudTJHaz0iLCJyb2xlcyI6IlBBUlRORVIiLCJpYXQiOjE3MDc2NDU3NDcsImV4cCI6MTcwNzY0OTM0N30.rsXcgAWsj25zdpcGvjkOybaoBdOtE5hYU_u6oaG7IjM
+
+
+### 매장 정보 (매니저)
+GET http://localhost:8080/api/shop/partner/list?managerId=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1hbmFnZXIuY29tIiwianRpIjoiTENhazJFTCt4SWY5eHBCemxzcjBwNHp4di96Vnc4ZEFDVks2c3ZudTJHaz0iLCJyb2xlcyI6IlBBUlRORVIiLCJpYXQiOjE3MDc2NDU3NDcsImV4cCI6MTcwNzY0OTM0N30.rsXcgAWsj25zdpcGvjkOybaoBdOtE5hYU_u6oaG7IjM
+
+
+### 매장 예약 정보
+GET http://localhost:8080/api/reservation/partner/reservation-list/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1hbmFnZXIuY29tIiwianRpIjoiTENhazJFTCt4SWY5eHBCemxzcjBwNHp4di96Vnc4ZEFDVks2c3ZudTJHaz0iLCJyb2xlcyI6IlBBUlRORVIiLCJpYXQiOjE3MDc2NDU3NDcsImV4cCI6MTcwNzY0OTM0N30.rsXcgAWsj25zdpcGvjkOybaoBdOtE5hYU_u6oaG7IjM
+
+
+### 매장 예약 (대기 -> 승인)
+PUT http://localhost:8080/api/reservation/partner/approval/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1hbmFnZXIuY29tIiwianRpIjoiTENhazJFTCt4SWY5eHBCemxzcjBwNHp4di96Vnc4ZEFDVks2c3ZudTJHaz0iLCJyb2xlcyI6IlBBUlRORVIiLCJpYXQiOjE3MDc2NDU3NDcsImV4cCI6MTcwNzY0OTM0N30.rsXcgAWsj25zdpcGvjkOybaoBdOtE5hYU_u6oaG7IjM
+
+{
+  "reservationStatus": "APPROVAL"
+}
+
+### 리뷰 삭제 (매니저)
+DELETE http://localhost:8080/api/review/delete/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1hbmFnZXIuY29tIiwianRpIjoiTENhazJFTCt4SWY5eHBCemxzcjBwNHp4di96Vnc4ZEFDVks2c3ZudTJHaz0iLCJyb2xlcyI6IlBBUlRORVIiLCJpYXQiOjE3MDc2NDU3NDcsImV4cCI6MTcwNzY0OTM0N30.rsXcgAWsj25zdpcGvjkOybaoBdOtE5hYU_u6oaG7IjM
