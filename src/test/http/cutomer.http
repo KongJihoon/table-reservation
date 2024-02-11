@@ -19,32 +19,32 @@ Content-Type: application/json
 }
 
 ### 매장 정보 조회
-GET http://localhost:8080/api/shop/detail/store00
+GET http://localhost:8080/api/shop/detail/shop
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lckBnbWFpbC5jb20iLCJqdGkiOiI4NHJvTmtwZWFLY205bGJ1dEhvbWlPUFF6VkJxQmdQT0luNnNacTVkazhrPSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MDc2NDU3ODksImV4cCI6MTcwNzY0OTM4OX0.g3_QOsykyy-XrMKivpowkb9QoR0fz_Hog6cyvk55Np4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lckBnbWFpbC5jb20iLCJqdGkiOiIyd05RdUZyNjRnYmVuMHpWYUFGQmdKYlI3TWZlLzhWZWxLTGs4c3k4S2JnPSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MDc2NjQ2OTgsImV4cCI6MTcwNzY2ODI5OH0.GNloV_wH_VYnr1Tvxl3moizrGzBBQJ52Ig8urr8F-iA
 
 ### 매장 예약 (고객)
 POST http://localhost:8080/api/reservation/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lckBnbWFpbC5jb20iLCJqdGkiOiI4NHJvTmtwZWFLY205bGJ1dEhvbWlPUFF6VkJxQmdQT0luNnNacTVkazhrPSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MDc2NDU3ODksImV4cCI6MTcwNzY0OTM4OX0.g3_QOsykyy-XrMKivpowkb9QoR0fz_Hog6cyvk55Np4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lckBnbWFpbC5jb20iLCJqdGkiOiIyd05RdUZyNjRnYmVuMHpWYUFGQmdKYlI3TWZlLzhWZWxLTGs4c3k4S2JnPSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MDc2NjQ2OTgsImV4cCI6MTcwNzY2ODI5OH0.GNloV_wH_VYnr1Tvxl3moizrGzBBQJ52Ig8urr8F-iA
 
 
 {
   "userId": 1,
-  "shopId": 1,
+  "shopId": 3,
   "reservationDate": "2024-02-19",
-  "reservationTime": "16:00:00"
+  "reservationTime": "15:00:00"
 }
 
 ### 매장 예약 취소 (고객)
-DELETE http://localhost:8080/api/reservation/cancel?reservationId=1
+DELETE http://localhost:8080/api/reservation/cancel?reservationId=2
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lckBnbWFpbC5jb20iLCJqdGkiOiI4NHJvTmtwZWFLY205bGJ1dEhvbWlPUFF6VkJxQmdQT0luNnNacTVkazhrPSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MDc2NDU3ODksImV4cCI6MTcwNzY0OTM4OX0.g3_QOsykyy-XrMKivpowkb9QoR0fz_Hog6cyvk55Np4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lckBnbWFpbC5jb20iLCJqdGkiOiIyd05RdUZyNjRnYmVuMHpWYUFGQmdKYlI3TWZlLzhWZWxLTGs4c3k4S2JnPSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MDc2NjQ2OTgsImV4cCI6MTcwNzY2ODI5OH0.GNloV_wH_VYnr1Tvxl3moizrGzBBQJ52Ig8urr8F-iA
 
 ### 리뷰 등록 (고객)
-POST http://localhost:8080/api/review/create?customerId=1&shopId=1&reservationId=1
+POST http://localhost:8080/api/review/create?customerId=1&shopId=3&reservationId=2
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lckBnbWFpbC5jb20iLCJqdGkiOiI4NHJvTmtwZWFLY205bGJ1dEhvbWlPUFF6VkJxQmdQT0luNnNacTVkazhrPSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MDc2NDU3ODksImV4cCI6MTcwNzY0OTM4OX0.g3_QOsykyy-XrMKivpowkb9QoR0fz_Hog6cyvk55Np4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lckBnbWFpbC5jb20iLCJqdGkiOiIyd05RdUZyNjRnYmVuMHpWYUFGQmdKYlI3TWZlLzhWZWxLTGs4c3k4S2JnPSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MDc2NjQ2OTgsImV4cCI6MTcwNzY2ODI5OH0.GNloV_wH_VYnr1Tvxl3moizrGzBBQJ52Ig8urr8F-iA
 
 {
   "reviewContent": "맛있습니다.",
@@ -54,13 +54,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lckBnbWFpbC5jb20iL
 ### 리뷰 삭제(고객)
 DELETE http://localhost:8080/api/review/delete/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lckBnbWFpbC5jb20iLCJqdGkiOiI4NHJvTmtwZWFLY205bGJ1dEhvbWlPUFF6VkJxQmdQT0luNnNacTVkazhrPSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MDc2NDU3ODksImV4cCI6MTcwNzY0OTM4OX0.g3_QOsykyy-XrMKivpowkb9QoR0fz_Hog6cyvk55Np4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lckBnbWFpbC5jb20iLCJqdGkiOiIyd05RdUZyNjRnYmVuMHpWYUFGQmdKYlI3TWZlLzhWZWxLTGs4c3k4S2JnPSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MDc2NjQ2OTgsImV4cCI6MTcwNzY2ODI5OH0.GNloV_wH_VYnr1Tvxl3moizrGzBBQJ52Ig8urr8F-iA
 
 
 ### 리뷰 수정 (고객)
 PUT http://localhost:8080/api/review/update/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lckBnbWFpbC5jb20iLCJqdGkiOiI4NHJvTmtwZWFLY205bGJ1dEhvbWlPUFF6VkJxQmdQT0luNnNacTVkazhrPSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MDc2NDU3ODksImV4cCI6MTcwNzY0OTM4OX0.g3_QOsykyy-XrMKivpowkb9QoR0fz_Hog6cyvk55Np4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lckBnbWFpbC5jb20iLCJqdGkiOiIyd05RdUZyNjRnYmVuMHpWYUFGQmdKYlI3TWZlLzhWZWxLTGs4c3k4S2JnPSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MDc2NjQ2OTgsImV4cCI6MTcwNzY2ODI5OH0.GNloV_wH_VYnr1Tvxl3moizrGzBBQJ52Ig8urr8F-iA
 
 {
   "reviewContent": "다음에 또 방묺하겠습니다.",
