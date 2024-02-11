@@ -21,23 +21,42 @@ import java.util.List;
 @Entity
 public class Customer extends BaseEntity implements UserDetails {
 
+    /**
+     * 고객 아이디
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 고객 이름
+     */
     @NotBlank
     private String name;
 
+
+    /**
+     * 회원 구분
+     */
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
+    /**
+     * 고객 이메일
+     */
     @Email
     @Column(unique = true)
     private String email;
 
+    /**
+     * 고객 비밀번호
+     */
     @NotBlank
     private String password;
 
+    /**
+     * 고객 휴대폰 번호
+     */
     @NotBlank
     private String phone;
 

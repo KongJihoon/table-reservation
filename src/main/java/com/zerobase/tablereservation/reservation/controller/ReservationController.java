@@ -17,6 +17,11 @@ public class ReservationController {
 
     private final ReservationService reservationService;
 
+    /**
+     * 매장 예약 생성
+     * @param request : 예약 시 필요 정보
+     * @return : 예약 정보
+     */
     @PostMapping("/create")
     @PreAuthorize("hasRole('CUSTOMER')")
     public CreateReservation.Response createReservation(
@@ -27,6 +32,12 @@ public class ReservationController {
         );
     }
 
+    /**
+     * 예약 승인 및 취소(매니저)
+     * @param id : 예약 아이디
+     * @param request : 기존 예약 정보
+     * @return : 승인 및 취소 상태
+     */
     @PutMapping("/partner/approval/{id}")
     @PreAuthorize("hasRole('PARTNER')")
     public UpdateReservation.Response updateReservation(
@@ -38,6 +49,11 @@ public class ReservationController {
         );
     }
 
+    /**
+     * 예약 리스트
+     * @param id: 매니저 아이디
+     * @return 매장 예약 리스트
+     */
     @GetMapping("/partner/reservation-list/{id}")
     @PreAuthorize("hasRole('PARTNER')")
     public SearchReservation getReservation(
@@ -48,7 +64,12 @@ public class ReservationController {
         );
     }
 
-
+    /**
+     * 매장 도착 확인 여부 변경
+     * @param id: 예약 아이디
+     * @param request: 예약 고객 정보
+     * @return : 예약 완료 정보
+     */
     @PutMapping("/kiosk/{id}")
     @PreAuthorize("hasRole('CUSTOMER')")
     public UpdateArrive.Response updateArrive(
@@ -61,6 +82,11 @@ public class ReservationController {
         );
     }
 
+    /**
+     * 예약 취소
+     * @param reservationId : 예약 아이디
+     * @return 예약 취소 정보
+     */
     @DeleteMapping("/cancel")
     @PreAuthorize("hasAnyRole('CUSTOMER', 'PARTNER')")
     public ResponseEntity<?> cancelReservation(

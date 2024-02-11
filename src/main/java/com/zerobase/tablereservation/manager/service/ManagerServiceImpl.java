@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import static com.zerobase.tablereservation.global.type.ErrorCode.ALREADY_EXIST_USER;
+import static com.zerobase.tablereservation.global.type.ErrorCode.MANAGER_NOT_FOUND;
 
 @Service
 @AllArgsConstructor
@@ -41,5 +42,14 @@ public class ManagerServiceImpl implements ManagerService{
                 .build());
 
         return ManagerDto.fromEntity(setManager);
+    }
+
+    @Override
+    public ManagerDto managerDetail(Long managerId) {
+
+        Manager manager = managerRepository.findById(managerId)
+                .orElseThrow(() -> new CustomException(MANAGER_NOT_FOUND));
+
+        return ManagerDto.fromEntity(manager);
     }
 }

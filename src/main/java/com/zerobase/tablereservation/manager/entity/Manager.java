@@ -21,30 +21,48 @@ import java.util.List;
 @AllArgsConstructor
 public class Manager extends BaseEntity implements UserDetails {
 
+    /**
+     * 매니저 아이디
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 매니저 이름
+     */
     @NotBlank
     private String name;
 
+    /**
+     * 회원 구분
+     */
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
+    /**
+     * 매니저 이메일
+     */
     @Email
     @Column(unique = true)
     private String email;
 
+    /**
+     * 매니저 비밀번호
+     */
     @NotBlank
     private String password;
 
+    /**
+     * 매니저 휴대폰 번호
+     */
     @NotBlank
     private String phone;
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_MANAGER"));
+        return List.of(new SimpleGrantedAuthority("ROLE_PARTNER"));
     }
 
     @Override

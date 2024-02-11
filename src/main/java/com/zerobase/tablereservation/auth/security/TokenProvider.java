@@ -34,9 +34,9 @@ public class TokenProvider {
 
     /**
      * 토큰 생성(발급)
-     * @param userEmail
-     * @param userType
-     * @return
+     * @param userEmail 유저 이메일
+     * @param userType 유저 타입
+     * @return jwt 생성
      */
     public String createToken(String userEmail, UserType userType){
         SecretKey key = getSecretKey();
@@ -93,7 +93,10 @@ public class TokenProvider {
     }
 
 
-
+    /**
+     * 토큰 암호화
+     * @return 인코딩 키
+     */
 
     private String generateToken(){
         UUID uuid = UUID.randomUUID();

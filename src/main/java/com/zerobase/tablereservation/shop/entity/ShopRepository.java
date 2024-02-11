@@ -15,6 +15,11 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
     Optional<Shop> findByShopName(String name);
 
 
+    /**
+     * 매니저가 등록한 매장의 정보
+     * @param managerId: 매니저 아이디
+     * @return 매장 리스트
+     */
     @Query(" select s from Shop s " +
         "where s.manager.id = :managerId")
     List<Shop> findShopByManagerId(

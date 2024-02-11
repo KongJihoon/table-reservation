@@ -8,6 +8,13 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 public enum ErrorCode {
 
+
+    /**
+     * common error
+     */
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value(), "내부 서버 오류가 발생했습니다."),
+    INVALID_REQUEST(HttpStatus.BAD_REQUEST.value(), "잘못된 요청입니다."),
+
     /**
      * manager & customer
      */
@@ -42,6 +49,7 @@ public enum ErrorCode {
     REVIEW_NOT_AVAILABLE(HttpStatus.BAD_REQUEST.value(), "리뷰를 작성할 수 없습니다."),
     REVIEW_RATING_OVER(HttpStatus.BAD_REQUEST.value(), "리뷰 평점이 범위를 벗어났습니다."),
     REVIEW_CONTENT_TOO_LONG(HttpStatus.BAD_REQUEST.value(), "200자 내로 리뷰를 작성해주세요."),
+
     /**
      * security error
      */
@@ -52,7 +60,7 @@ public enum ErrorCode {
     INVALID_ACCESS_TOKEN(HttpStatus.FORBIDDEN.value(), "접근 권한이 없습니다."),
     LOGIN_REQUIRED(HttpStatus.UNAUTHORIZED.value(), "로그인이 되지 않았습니다."),
     WRONG_TYPE_SIGNATURE(HttpStatus.UNAUTHORIZED.value(), "잘못된 JWT 서명입니다.");
-    ;
+
 
 
 

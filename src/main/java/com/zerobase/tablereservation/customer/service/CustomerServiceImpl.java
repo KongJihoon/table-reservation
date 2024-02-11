@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import static com.zerobase.tablereservation.global.type.ErrorCode.ALREADY_EXIST_USER;
+import static com.zerobase.tablereservation.global.type.ErrorCode.CUSTOMER_NOT_FOUND;
 
 @Service
 @AllArgsConstructor
@@ -43,5 +44,14 @@ public class CustomerServiceImpl implements CustomerService{
                 .build());
 
         return CustomerDto.fromEntity(setCustomer);
+    }
+
+    @Override
+    public CustomerDto customerDetail(Long customerId) {
+
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new CustomException(CUSTOMER_NOT_FOUND));
+
+        return CustomerDto.fromEntity(customer);
     }
 }
