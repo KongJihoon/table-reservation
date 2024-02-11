@@ -162,19 +162,19 @@
   결과
   - 성공
     ~~~
-    {
-      "shopName": "shop2",
-      "location": "인천시 계양구",
-      "phone": "032-1234-5670"
-    }
+      {
+        "shopName": "shop2",
+        "location": "인천시 계양구",
+        "phone": "032-1234-5670"
+      }
     ~~~
   
   - 실패
     ~~~
-    {
-      "errorCode": "MANAGER_NOT_FOUND",
-      "errorMessage": "매니저를 찾을 수 없습니다."
-    }
+      {
+        "errorCode": "MANAGER_NOT_FOUND",
+        "errorMessage": "매니저를 찾을 수 없습니다."
+      }
     ~~~
 </details>
 
@@ -196,10 +196,10 @@
   결과
   - 성공
   ~~~
-    {
+     {
       "shopName": "shop1",
       "location": "서울시"
-    }
+     }
   ~~~
 
   - 실패
@@ -219,11 +219,11 @@
 
   결과
   - 성공
-  ~~~
-  {
-    매장 삭제 완료
-  }
-  ~~~
+    ~~~
+      {
+        매장 삭제 완료
+      }
+    ~~~
 
   - 실패
     ~~~
